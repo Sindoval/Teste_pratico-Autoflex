@@ -1,10 +1,12 @@
 package com.autoflex.demo.business.converter;
 
+import com.autoflex.demo.business.dto.in.MaterialRequestDto;
 import com.autoflex.demo.business.dto.in.ProductRequestDTO;
 import com.autoflex.demo.business.dto.out.ProductMaterialResponseDTO;
 import com.autoflex.demo.business.dto.out.ProductResponseDTO;
 import com.autoflex.demo.infrastructure.entity.Product;
 import com.autoflex.demo.infrastructure.entity.ProductMaterial;
+import com.autoflex.demo.infrastructure.entity.RawMaterial;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -36,4 +38,5 @@ public class ProductConverter {
         .requiredQuantity(productMaterial.getRequiredQuantity())
         .build();
   }
+
 }
