@@ -1,5 +1,6 @@
 package com.autoflex.demo.infrastructure.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +25,6 @@ public class RawMaterial extends BaseEntity{
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String name;
+  @Column(name = "stock_quantity")
   private Double stockQuantity;
-
 }

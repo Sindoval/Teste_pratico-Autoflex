@@ -1,6 +1,7 @@
 package com.autoflex.demo.business.converter;
 
 import com.autoflex.demo.business.dto.in.MaterialRequestDto;
+import com.autoflex.demo.business.dto.in.MaterialUpdateDTO;
 import com.autoflex.demo.business.dto.out.MaterialResponseDTO;
 import com.autoflex.demo.infrastructure.entity.RawMaterial;
 import org.springframework.stereotype.Component;
@@ -24,5 +25,17 @@ public class MaterialConverter {
         .name(entity.getName())
         .stockQuantity(entity.getStockQuantity())
         .build();
+  }
+
+  public void updateEntityFromDto(MaterialUpdateDTO dto, RawMaterial entity) {
+    if (dto == null || entity == null) return;
+
+    if (dto.getName() != null && !dto.getName().isBlank()) {
+      entity.setName(dto.getName());
+    }
+
+    if (dto.getStockQuantity() != null) {
+      entity.setStockQuantity(dto.getStockQuantity());
+    }
   }
 }
