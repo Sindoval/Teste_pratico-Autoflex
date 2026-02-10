@@ -1,10 +1,9 @@
 package com.autoflex.demo.controller;
 
 import com.autoflex.demo.business.RawMaterialService;
-import com.autoflex.demo.business.dto.in.MaterialRequestDto;
+import com.autoflex.demo.business.dto.in.MaterialRequestDTO;
 import com.autoflex.demo.business.dto.in.MaterialUpdateDTO;
 import com.autoflex.demo.business.dto.out.MaterialResponseDTO;
-import com.autoflex.demo.infrastructure.entity.RawMaterial;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -30,7 +29,7 @@ public class RawMaterialController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ResponseEntity<MaterialResponseDTO> save(@RequestBody @Valid MaterialRequestDto dto) {
+  public ResponseEntity<MaterialResponseDTO> save(@RequestBody @Valid MaterialRequestDTO dto) {
     MaterialResponseDTO response = materialService.save(dto);
 
     URI location = ServletUriComponentsBuilder
