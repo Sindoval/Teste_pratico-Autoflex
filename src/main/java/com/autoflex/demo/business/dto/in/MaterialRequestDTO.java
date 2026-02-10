@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MaterialRequestDto {
+public class MaterialRequestDTO {
   @NotBlank(message = "Material name cannot be blank")
   private String name;
 

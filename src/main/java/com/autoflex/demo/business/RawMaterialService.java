@@ -1,7 +1,7 @@
 package com.autoflex.demo.business;
 
 import com.autoflex.demo.business.converter.MaterialConverter;
-import com.autoflex.demo.business.dto.in.MaterialRequestDto;
+import com.autoflex.demo.business.dto.in.MaterialRequestDTO;
 import com.autoflex.demo.business.dto.in.MaterialUpdateDTO;
 import com.autoflex.demo.business.dto.out.MaterialResponseDTO;
 import com.autoflex.demo.infrastructure.entity.RawMaterial;
@@ -20,7 +20,7 @@ public class RawMaterialService {
 
 
   @Transactional
-  public MaterialResponseDTO save(MaterialRequestDto dto) {
+  public MaterialResponseDTO save(MaterialRequestDTO dto) {
     return materialConverter.toDTO(materialRepository.save(materialConverter.toEntity(dto)));
   }
 
