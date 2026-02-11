@@ -4,6 +4,7 @@ import com.autoflex.demo.business.ProductService;
 import com.autoflex.demo.business.dto.in.ProductRequestDTO;
 import com.autoflex.demo.business.dto.in.ProductUpdateDTO;
 import com.autoflex.demo.business.dto.out.ProductResponseDTO;
+import com.autoflex.demo.business.dto.out.ProductionSuggestionDTO;
 import jakarta.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -60,5 +61,10 @@ public class ProductController {
   public ResponseEntity<Void> delete(@PathVariable Long id) {
     productService.delete(id);
     return ResponseEntity.ok().build();
+  }
+
+  @GetMapping("/production")
+  public ResponseEntity<List<ProductionSuggestionDTO>> productionSuggest() {
+    return ResponseEntity.ok(productService.suggestProduction());
   }
 }
