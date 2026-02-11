@@ -1,7 +1,10 @@
 package com.autoflex.demo.infrastructure.entity;
 
+import com.autoflex.demo.infrastructure.enums.MeasurementUnit;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,4 +30,7 @@ public class RawMaterial extends BaseEntity{
   private String name;
   @Column(name = "stock_quantity")
   private Double stockQuantity;
+
+  @Enumerated(EnumType.STRING)
+  private MeasurementUnit unit;
 }

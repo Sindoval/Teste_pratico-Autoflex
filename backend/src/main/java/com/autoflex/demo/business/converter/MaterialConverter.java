@@ -15,6 +15,7 @@ public class MaterialConverter {
     return RawMaterial.builder()
         .name(dto.getName())
         .stockQuantity(dto.getStockQuantity())
+        .unit(dto.getUnit())
         .build();
   }
 
@@ -24,6 +25,7 @@ public class MaterialConverter {
         .id(entity.getId())
         .name(entity.getName())
         .stockQuantity(entity.getStockQuantity())
+        .unit(entity.getUnit())
         .build();
   }
 
@@ -36,6 +38,10 @@ public class MaterialConverter {
 
     if (dto.getStockQuantity() != null) {
       entity.setStockQuantity(dto.getStockQuantity());
+    }
+
+    if(dto.getUnit() != null) {
+      entity.setUnit(dto.getUnit());
     }
   }
 }

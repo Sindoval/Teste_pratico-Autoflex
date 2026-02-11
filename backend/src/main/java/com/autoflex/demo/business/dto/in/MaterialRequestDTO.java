@@ -1,5 +1,6 @@
 package com.autoflex.demo.business.dto.in;
 
+import com.autoflex.demo.infrastructure.enums.MeasurementUnit;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -21,4 +22,7 @@ public class MaterialRequestDTO {
   @NotNull(message = "Stock quantity is required")
   @PositiveOrZero(message = "Stock quantity cannot be negative")
   private Double stockQuantity;
+
+  @NotNull(message = "Measurement unit is required")
+  private MeasurementUnit unit;
 }

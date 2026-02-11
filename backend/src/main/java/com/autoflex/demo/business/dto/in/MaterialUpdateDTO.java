@@ -1,5 +1,6 @@
 package com.autoflex.demo.business.dto.in;
 
+import com.autoflex.demo.infrastructure.enums.MeasurementUnit;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,4 +20,6 @@ public class MaterialUpdateDTO {
 
   @PositiveOrZero(message = "Stock quantity cannot be negative")
   private Double stockQuantity;
+
+  private MeasurementUnit unit;
 }

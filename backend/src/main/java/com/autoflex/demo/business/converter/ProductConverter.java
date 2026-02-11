@@ -35,6 +35,7 @@ public class ProductConverter {
         .materialId(productMaterial.getRawMaterial().getId())
         .materialName(productMaterial.getRawMaterial().getName())
         .requiredQuantity(productMaterial.getRequiredQuantity())
+        .unit(productMaterial.getRawMaterial().getUnit())
         .build();
   }
 

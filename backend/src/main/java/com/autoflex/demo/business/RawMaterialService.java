@@ -5,10 +5,12 @@ import com.autoflex.demo.business.dto.in.MaterialRequestDTO;
 import com.autoflex.demo.business.dto.in.MaterialUpdateDTO;
 import com.autoflex.demo.business.dto.out.MaterialResponseDTO;
 import com.autoflex.demo.infrastructure.entity.RawMaterial;
+import com.autoflex.demo.infrastructure.exceptions.DatabaseException;
 import com.autoflex.demo.infrastructure.exceptions.ResourceNotFoundException;
 import com.autoflex.demo.infrastructure.repository.RawMaterialRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +61,12 @@ public class RawMaterialService {
     if (!materialRepository.existsById(id)) {
       throw new ResourceNotFoundException("Material Not Found: " + id);
     }
-    materialRepository.deleteById(id);
+    try {
+      materialRepository.deleteById(id);
+      materialRepository.flush();
+    } catch (DataIntegrityViolationException e) {
+      throw new DatabaseException
+          ("Cannot delete material: it is currently linked to one or more products.");
+    }
   }
 }

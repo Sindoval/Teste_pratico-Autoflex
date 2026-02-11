@@ -1,5 +1,6 @@
 package com.autoflex.demo.business.dto.out;
 
+import com.autoflex.demo.infrastructure.enums.MeasurementUnit;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,4 +16,5 @@ public class ProductMaterialResponseDTO {
   private Long materialId;
   private String materialName;
   private Double requiredQuantity;
+  private MeasurementUnit unit;
 }

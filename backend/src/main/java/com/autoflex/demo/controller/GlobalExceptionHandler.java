@@ -1,5 +1,6 @@
 package com.autoflex.demo.controller;
 
+import com.autoflex.demo.infrastructure.exceptions.DatabaseException;
 import com.autoflex.demo.infrastructure.exceptions.ResourceNotFoundException;
 import com.autoflex.demo.infrastructure.exceptions.dto.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,6 +40,19 @@ public class GlobalExceptionHandler {
             errorMessage,
             request.getRequestURI(),
             "BAD REQUEST - Validation Error"
+        )
+    );
+  }
+
+  @ExceptionHandler(DatabaseException.class)
+  public ResponseEntity<ErrorResponseDTO> handleDatabaseException(DatabaseException e,
+      HttpServletRequest request) {
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(
+        buildMessageError(
+            HttpStatus.CONFLICT.value(),
+            e.getMessage(),
+            request.getRequestURI(),
+            "DATABASE CONFLICT"
         )
     );
   }
