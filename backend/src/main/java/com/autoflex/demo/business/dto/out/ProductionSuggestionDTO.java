@@ -1,6 +1,7 @@
 package com.autoflex.demo.business.dto.out;
 
 import java.math.BigDecimal;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,4 +18,5 @@ public class ProductionSuggestionDTO {
   private String productName;
   private Integer quantityToProduce;
   private BigDecimal totalPrice;
+  private List<ProductionSuggestionMaterialDTO> materials;
 }

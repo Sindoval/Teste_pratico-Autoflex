@@ -6,6 +6,7 @@ import com.autoflex.demo.business.dto.in.ProductRequestDTO;
 import com.autoflex.demo.business.dto.in.ProductUpdateDTO;
 import com.autoflex.demo.business.dto.out.ProductResponseDTO;
 import com.autoflex.demo.business.dto.out.ProductionSuggestionDTO;
+import com.autoflex.demo.business.dto.out.ProductionSuggestionMaterialDTO;
 import com.autoflex.demo.infrastructure.entity.Product;
 import com.autoflex.demo.infrastructure.entity.ProductMaterial;
 import com.autoflex.demo.infrastructure.entity.RawMaterial;
@@ -111,6 +112,16 @@ public class ProductService {
       int canProduce = calculateMaxProduction(product, dbStock);
 
       if(canProduce > 0) {
+        List<ProductionSuggestionMaterialDTO> materialsDetails = product.getMaterials()
+            .stream().map(material ->
+                ProductionSuggestionMaterialDTO.builder()
+                    .name(material.getRawMaterial().getName())
+                    .unit(material.getRawMaterial().getUnit())
+                    .stockAtMoment(material.getRawMaterial().getStockQuantity())
+                    .requiredQuantity(material.getRequiredQuantity() * canProduce)
+                    .build()
+                ).toList();
+
         updateDbStock(product, canProduce, dbStock);
 
         suggestion.add(
@@ -119,6 +130,7 @@ public class ProductService {
                 .productName(product.getName())
                 .quantityToProduce(canProduce)
                 .totalPrice(product.getPrice().multiply(BigDecimal.valueOf(canProduce)))
+                .materials(materialsDetails)
                 .build()
         );
       }
