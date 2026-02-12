@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Plus, Edit, Trash2, ScrollText, DollarSign } from "lucide-react";
 
 const Products = () => {
-  // Simulando dados do ProductResponseDTO
   const products = [
     {
       id: 1,

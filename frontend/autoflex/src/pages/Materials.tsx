@@ -4,18 +4,12 @@ import { Button } from "@/components/ui/button";
 import { Edit, Trash2, Plus } from "lucide-react";
 
 const Materials = () => {
-  // Dados baseados estritamente no seu MaterialResponseDTO
   const materials = [
     { id: 1, name: "Steel Bars", stockQuantity: 150, unit: "KG" },
-    { id: 2, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" },
-    { id: 2, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" },
-    { id: 2, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" },
-    { id: 2, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" }
-  ];
+    { id: 3, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" },
+    { id: 4, name: "Aluminum Sheets", stockQuantity: 75, unit: "METERS" },
 
-  const handleDelete = (id: number) => {
-    console.log("Deletando material:", id);
-  };
+  ];
 
   return (
     <div className="space-y-6 bg-white px-4 md:px-10 mb-20">
@@ -63,7 +57,7 @@ const Materials = () => {
                           variant="ghost"
                           size="icon"
                           className="h-8 w-8 text-slate-400 hover:text-red-500"
-                          onClick={() => handleDelete(m.id)}
+                          onClick={() => () => console.log("Delete")}
                         >
                           <Trash2 size={18} />
                         </Button>
@@ -78,7 +72,7 @@ const Materials = () => {
           {/* --- VERSION MOBILE  */}
           <div className="grid grid-cols-1 gap-4 md:hidden">
             {materials.map((m) => (
-              <div key={m.id} className="p-4 rounded-lg border border-slate-200 bg-white space-y-3">
+              <Card className="p-4 border-slate-200 shadow-none space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
                     <h4 className="font-bold text-slate-900">{m.name}</h4>
@@ -98,14 +92,13 @@ const Materials = () => {
                   <Button
                     variant="destructive"
                     className="flex-1 h-9 gap-2"
-                    onClick={() => handleDelete(m.id)}
+                    onClick={() => console.log("Delete")
+                    }
                   >
                     <Trash2 size={16} /> Delete
                   </Button>
                 </div>
-
-
-              </div>
+              </Card>
             ))}
           </div>
 

@@ -10,7 +10,7 @@ const Layout = () => {
 
   const navItems = [
     { name: "Dashboard", path: "/", icon: LayoutDashboard },
-    { name: "Raw Materials", path: "/materials", icon: Box },
+    { name: "Materials", path: "/materials", icon: Box },
     { name: "Products & Recipes", path: "/products", icon: ScrollText },
   ];
 

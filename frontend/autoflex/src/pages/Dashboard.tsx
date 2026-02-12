@@ -41,7 +41,7 @@ const Dashboard = () => {
       <div className="grid gap-4 grid-cols-2 md:grid-cols-3 pt-4 md:pt-0">
         <Card className="shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs md:text-sm font-medium text-slate-500 uppercase">Materials</CardTitle>
+            <CardTitle className="text-xs md:text-sm font-medium text-slate-500 uppercase">Registered Materials</CardTitle>
             <Boxes className="h-8 w-8 text-primary" />
           </CardHeader>
           <CardContent>
@@ -51,7 +51,7 @@ const Dashboard = () => {
 
         <Card className="shadow-sm border-slate-200">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-xs md:text-sm font-medium text-slate-500 uppercase">Products</CardTitle>
+            <CardTitle className="text-xs md:text-sm font-medium text-slate-500 uppercase">Registered Products</CardTitle>
             <Box className="h-8 w-8 text-primary" />
           </CardHeader>
           <CardContent>
