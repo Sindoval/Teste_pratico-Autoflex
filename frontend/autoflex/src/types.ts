@@ -7,6 +7,12 @@ export interface RawMaterial {
   unit: MeasurementUnit;
 }
 
+export interface RequestRawMaterial {
+  name: string;
+  stockQuantity: number;
+  unit: MeasurementUnit;
+}
+
 export interface ProductMaterial {
   materialId: number;
   materialName: string;
@@ -14,11 +20,23 @@ export interface ProductMaterial {
   unit: MeasurementUnit;
 }
 
+export interface RequestProduct {
+  name: string;
+  price: number;
+  materials: ComponentProduct[];
+}
+
 export interface Product {
   id: number;
   name: string;
   price: number;
-  materials: ProductMaterial[];
+  materials: ComponentProduct[];
+}
+
+export interface ComponentProduct {
+  materialId: number;
+  materialName?: string;
+  requiredQuantity: number;
 }
 
 export interface ProductionSuggestionMaterial {

@@ -1,6 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Product } from '../../types';
+import type { Product, RequestProduct } from '../../types';
 import { api } from '@/service/api';
 
 
@@ -11,13 +11,47 @@ interface ProductState {
 }
 
 
-export const fetchProducts = createAsyncThunk(
+export const fetchProducts = createAsyncThunk<Product[], void>(
   'product/fetchProducts',
   async (_, { rejectWithValue }) => {
     try {
       return await api.get<Product[]>('/products');
     } catch (error: any) {
       return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createProducts = createAsyncThunk<Product, RequestProduct>(
+  'product/postProducts',
+  async (newProduct, { rejectWithValue }) => {
+    try {
+      return await api.post<Product>('/products', newProduct);
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
+
+export const updateProducts = createAsyncThunk<Product, Product>(
+  'product/updateProducts',
+  async (productUpdate: Product, { rejectWithValue }) => {
+    try {
+      return await api.put<Product>(`/products/${productUpdate.id}`, productUpdate);
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
+
+export const deleteProduct = createAsyncThunk<number, number>(
+  'product/deleteProduct',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      await api.delete(`/products/${id}`);
+      return id;
+    } catch (error: any) {
+      return rejectWithValue(error.message || "Cannot delete: Material is linked to products");
     }
   }
 );
@@ -75,6 +109,20 @@ export const productSlice = createSlice({
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
+      })
+      .addCase(createProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        state.products.push(action.payload);
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        state.products = state.products.filter(m => m.id !== action.payload);
+      })
+      .addCase(updateProducts.fulfilled, (state, action) => {
+        state.loading = false;
+        const index = state.products.findIndex(m => m.id === action.payload.id);
+        if (index !== -1) {
+          state.products[index] = action.payload;
+        }
       });
   },
 });
