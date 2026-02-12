@@ -37,7 +37,7 @@ const CardSuggestion = (
                     {name}
                   </span>
                   <span className="text-xs text-slate-500 font-mono">
-                    {requiredQuantity}/{stockAtMoment} {unit}
+                    {requiredQuantity.toFixed(2)}/{stockAtMoment} {unit}
                   </span>
                 </div>
               ))}

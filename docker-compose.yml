@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: autoflex_db
+    environment:
+      POSTGRES_DB: autoflex
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root -d autoflex" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: autoflex_api
+    ports:
+      - "8081:8081"
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/autoflex
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend/autoflex
+    container_name: autoflex_client
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
