@@ -121,9 +121,10 @@ const EditProductDialog = ({ product, open, onOpenChange }: EditProductDialogPro
                       type="number"
                       value={item.requiredQuantity === 0 ? "" : item.requiredQuantity}
                       onChange={(e) => {
-                        const newRecipe = [...recipe];
-                        newRecipe[index].requiredQuantity = e.target.value === "" ? 0 : Number(e.target.value);
-                        setRecipe(newRecipe);
+                        const newQty = e.target.value === "" ? 0 : Number(e.target.value);
+                        setRecipe(prev => prev.map((recipeItem, i) =>
+                          i === index ? { ...recipeItem, requiredQuantity: newQty } : recipeItem
+                        ));
                       }}
                       className="h-9 bg-slate-50"
                     />
