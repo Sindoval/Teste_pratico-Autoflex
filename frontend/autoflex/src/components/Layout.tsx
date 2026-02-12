@@ -15,7 +15,7 @@ const Layout = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-slate-50/50">
+    <div className="flex flex-col min-h-screen w-full bg-white">
       <header className="fixed top-0 z-40 flex h-16 w-full items-center justify-between border-b bg-white px-4 md:px-6">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2 text-blue-600">

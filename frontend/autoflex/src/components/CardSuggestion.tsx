@@ -13,7 +13,7 @@ const CardSuggestion = (
           <div className="space-y-1 flex-1">
             <div className="flex items-center gap-2">
               <h4 className="text-xl font-bold text-slate-900">{productName}</h4>
-              <Badge className="bg-blue-600">`${quantityToProduce} Units`</Badge>
+              <Badge className="bg-blue-600">{`${quantityToProduce} Units`}</Badge>
             </div>
             <p className="text-sm text-slate-500">Suggested production quantity</p>
           </div>

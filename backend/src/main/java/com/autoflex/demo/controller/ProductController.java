@@ -63,7 +63,7 @@ public class ProductController {
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/production")
+  @GetMapping("/suggestion")
   public ResponseEntity<List<ProductionSuggestionDTO>> productionSuggest() {
     return ResponseEntity.ok(productService.suggestProduction());
   }

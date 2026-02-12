@@ -19,9 +19,9 @@ export const fetchProductionSuggestions = createAsyncThunk(
   'suggestions/fetchSuggestions',
   async (_, { rejectWithValue }) => {
     try {
-      return await api.get<ProductionSuggestion[]>('/products/suggestions');
+      return await api.get<ProductionSuggestion[]>('/products/suggestion');
     } catch (error: any) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.message || "Failed to load suggestions");
     }
   }
 );
